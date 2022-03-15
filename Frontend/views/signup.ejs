@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign up | Aktarul Raj</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="login-box">
+        <h2>LOGIN</h2>
+        <% if(locals.error) {%>
+        <p style="color: rgb(224, 53, 53);"><%= locals.error %></p>
+        <% }%>
+        <form action="/authsignup" method="post">
+            <div class="user-box">
+                <input type="text" name="username" required="">
+            <label>Username</label>    
+            </div>
+            <div class="user-box">
+                <input type="email" name="email" required="" >
+                <label>Email</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" required="">
+                <label>Password</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="cpassword" required="">
+                <label>Confrim Password</label>
+            </div>
+            <button type="submit" style="border: none; outline: none; background: transparent; cursor: pointer;">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Sign Up
+            </button>
+            <!--That's all-->
+        </form>
+     
+    </div>
+</body>
+</html> 
