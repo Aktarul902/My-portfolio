@@ -1,4 +1,5 @@
 @import 'utilities.css';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
 /* @import'login.css'; */
 :root{
     --primary:#3DCFD3;
@@ -85,9 +86,9 @@ header nav .branding{
     /* z-index: -2; */
 }
 .hero .left img{
-    width:400px;
+    width: 400px;
     position: relative;
-    top: -15vh;
+    top: -2vh;
     z-index: -2;
 }
 .hero .right{
@@ -406,9 +407,11 @@ section.blog .card-wrapper .card .card-content a.read-more{
 }
 
 section.contact .card-wrapper{
-    display:grid;
+    display: grid;
     grid-template-columns: repeat(3,1fr);
-    grid-gap:3rem;
+    grid-gap: 3rem;
+    position: relative;
+    left: 10vw;
 }
 section.contact .card-wrapper .card{
     text-align: center;

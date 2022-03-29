@@ -45,7 +45,9 @@
     flex:1;
 }
 .justify-center{
+    /* justify-content: center; */
     justify-content: center;
+    padding: 197px 0;
 }
 .a-btn{
     text-decoration: none; 

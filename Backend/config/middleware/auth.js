@@ -5,7 +5,7 @@ const auth = async (req,res,next)=>{
     try{
 
     
-    const token = req.cookies.loginjwt
+    const token = req.cookies.auth
     const verify = jwt.verify(token,"mynameisaktarulrajthisismehellowelcome;");
     console.log(verify);
     const user = await   Data.findOne({_id:verify._id})
@@ -18,6 +18,7 @@ const auth = async (req,res,next)=>{
     }catch(e){
         // app.use(express.static(static))
         res.status(404)
+        console.log(e)
         return res.redirect("/login")
     }
 }

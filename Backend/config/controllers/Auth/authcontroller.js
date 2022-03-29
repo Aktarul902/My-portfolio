@@ -1,7 +1,9 @@
 
 function authcontroller(){
-    const Data = require("../../Models/signupdata")
-    const bcrypt = require("bcrypt")
+    const Data = require("../../Models/signupdata");
+    const Profiledata = require("../../Models/signupdata");
+    const bcrypt = require("bcrypt");
+    
  return {
      signin(req,res){
          res.render("login")
@@ -10,15 +12,16 @@ function authcontroller(){
           res.render("signup")
      },
      async authsignup(req,res){
+         console.log(req.body)
        const {username,email,password,cpassword} = req.body
-       if(!username || !email, !password ,!cpassword){
+       if(!username || !email || !password || !cpassword){
           return  res.render("signup",{
                error:"All fields are required"
            })
        }
        if(!password===cpassword){
         return  res.render("signup",{
-            error:"password are not match"
+            error:"password is incorrect"
         })
        }
        const userexist = await Data.findOne({email:email})
@@ -35,10 +38,9 @@ function authcontroller(){
            password:hashpassword,
            cpassword:hashcpassword
         })
-        const token = await data.genwebtoken();
-        res.cookie("auth",token);
+
         const response = await data.save()
-        return res.redirect("/login")
+        return res.redirect("/user/profile")
      },
      async authlogin(req,res){
         const {email , password}= req.body
@@ -50,8 +52,17 @@ function authcontroller(){
         const data = await Data.findOne({email})
         const hashpassword = await bcrypt.compare(password,data.password)
         if(data && hashpassword){
+            req.session.token = [{
+                username:data.name,
+                role:data.role,
+                email:data.email
+            }]
             console.log("login succesful")
-            return res.redirect("/")
+            console.log(req.session)
+            return res.render("index",{
+                username:req.session.token[0].username,
+                email:req.session.token[0].name
+            })
         }else{
             res.status(404)
             
@@ -60,7 +71,13 @@ function authcontroller(){
             })
         
         }
-     }
+     },
+     logout(req,res){
+         delete req.session.token
+         res.redirect("/")
+
+     },
+   
 
  }
 }

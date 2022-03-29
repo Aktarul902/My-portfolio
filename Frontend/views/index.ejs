@@ -19,13 +19,22 @@
         </button>
 
         <div class="mobile-nav">
+            <% if(session.token) {%>
+            <h1><%= session.token[0].username %></h1>
+            <%}%>
             <button class="times"><img src="./images/times.svg" alt=""></button>
             <ul>
                 <li style="cursor: pointer;"><a href="#">Home</a></li>
-                <li style="cursor: pointer;"><a href="#">About</a></li>
-                <li style="cursor: pointer;"><a href="#">Services</a></li>
-                <li style="cursor: pointer;"><a href="#">Work</a></li>
-                <li style="cursor: pointer;"><a href="#">Blog</a></li>
+                <li style="cursor: pointer;"><a href="#about">About</a></li>
+                <li style="cursor: pointer;"><a href="#services">Services</a></li>
+                <li style="cursor: pointer;"><a href="#work">Work</a></li>
+                <li style="cursor: pointer;"><a href="#blog">Blog</a></li>
+                <li style="cursor: pointer;"><a href="#contact">contact</a></li>
+                <%if(session.token) {%>
+                <li style="cursor: pointer;"><a href="/logout">logout</a></li>
+                <% } %>
+          
+
             </ul>
         </div>
         <header>
@@ -40,32 +49,51 @@
                             <a href="#about">About</a>
                             <a href="#services">Services</a>
                             <a href="#work">Work</a>
-                            <a href="/signup">Blog</a>
-                            <a href="#blog">contact</a>
+                            <a href="#blog">Blog</a>
+                            <a href="#contact">contact</a>
                         </div>
                     </div>
+                    <%if(!session.token) {%>
                     <div >
-                        <button class="btn btn-primary" ><a href="/login" class="a-btn" > Log in</a></button>
+                        <button class="btn btn-primary hover" ><a href="/login" class="a-btn" > Log in</a></button>
                     </div>
                     <div >
-                        <button class="btn btn-primary" ><a href="/signup"  class="a-btn" > Sign up</a></button>
+                        <button class="btn btn-primary hover-2" ><a href="/signup"  class="a-btn btn-2" > Sign up</a></button>
                     </div>
+                    <% } else {%>
+                        <div >
+                            <a  class="a-btn btn-2" style="color: #3DCFD3; position: relative ; left: -10vw;"><%= session.token[0].username %></a>
+                            <a href="/logout" style="    border: none;
+                            outline: none;
+                            background-color: #3DCFD3;
+                            position: relative;
+                            left: -8vw;
+                            padding: 10px;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            text-decoration: none;
+                            color:#161616;
+                            
+                            " >Log out</a>
+                        </div>
                     <!-- Access only Admin User -->
-                    <!-- <div class="right">
-                        <button class="btn btn-primary">Upload Blog</button>
-                    </div>  -->
+                    <% if(session.token[0].role === "admin") {%>
+                    <div class="right">
+                        <button class="btn btn-primary" style="margin-left: 10px;">Upload</button>
+                    </div> 
+                    <%} %>
+                <% } %>
                 </nav>
                 <div class="hero flex items-center justify-between" >
                     <div class="left flex-1 flex justify-center">
-                        <img src="./images/mypic.png" alt="">
+                        <img src="./images/images.svg" alt="">
                     </div>
                     <div class="right flex-1">
                         <h6>Aktarul Raj</h6>
                         <h1>I’m a <span class="auto-typing"></span></h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco
-                            laboris
-                            nisi ut aliquip ex ea commodo consequat</p>
+                        <p>I am a Web desiner and also a full web developer . I have two years experience 
+                            Full-stack Software Developer and Javascript Enthusiast, Who Loves Building Things In Javascript.
+                         Educator at Farimul Mondal. I have knowledge in data entry and two years of experience</p>
                         <div >
                             <button class="btn btn-secondary">DOWNLOAD CV</button>
                         </div>
@@ -77,19 +105,14 @@
         <section id="about" class="about">
             <div class="container flex items-center about-inner-wrap">
                 <div class="flex-1">
-                    <img class="about-me-img" src="./images/mypic.jpg" alt="">
+                    <img class="about-me-img" src="./images/farimulpic.jpeg" alt="">
                 </div>
                 <div class="flex-1 right">
                     <h1>About <span>Me</span></h1>
-                    <h3>Hello! i’m Johnathan Vics.</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut
-                        labore et
-                        dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-                        Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat</p>
+                    <h3>Hello! i’m Farimul Mondal.</h3>
+                    <p>I am a Web desiner and also a full web developer . I have two years experience 
+                        Full-stack Software Developer and Javascript Enthusiast, Who Loves Building Things In Javascript.
+                     Educator at Farimul Mondal. I have knowledge in data entry and two years of experience</p>
                     <div class="social">
                         <a href="#"><img src="./images/website.svg" alt=""></a>
                         <a href="https://www.facebook.com/codersgyan"><img src="./images/facebook.svg" alt=""></a>
@@ -105,45 +128,38 @@
                 <p>We provide high standar clean website for your business solutions</p>
                 <div class="card-wrapper">
                     <div class="card">
-                        <img src="./images/brush.svg" alt="">
-                        <h2>Graphic Design</h2>
-                        <p>There are many variations of passages of but the majority have suffered alteration in some
-                            form.
-                        </p>
-                    </div>
-                    <div class="card">
                         <img src="./images/code.svg" alt="">
                         <h2>Graphic Design</h2>
                         <p>There are many variations of passages of but the majority have suffered alteration in some
-                            form.
+                         
                         </p>
                     </div>
                     <div class="card">
                         <img src="./images/bag.svg" alt="">
-                        <h2>Graphic Design</h2>
-                        <p>There are many variations of passages of but the majority have suffered alteration in some
-                            form.
+                        <h2>Web Designer</h2>
+                        <p> Making Your Webpages cool you need a best web Designer . I am a web designer and i have two years experience
+                      
                         </p>
                     </div>
                     <div class="card">
                         <img src="./images/desktop.svg" alt="">
-                        <h2>Graphic Design</h2>
-                        <p>There are many variations of passages of but the majority have suffered alteration in some
-                            form.
+                        <h2>Web Developer</h2>
+                        <p>Adding functionality in your Webpages you need a web Developer . i am a Full stack web developer and i have three years experience 
+                           
                         </p>
                     </div>
                     <div class="card">
                         <img src="./images/media.svg" alt="">
-                        <h2>Graphic Design</h2>
-                        <p>There are many variations of passages of but the majority have suffered alteration in some
-                            form.
+                        <h2>Data Entry</h2>
+                        <p> Storing Data manually you need a data entry oparator . I am a data entry oparator and i have two years experience 
+                          
                         </p>
                     </div>
                     <div class="card">
                         <img src="./images/phone.svg" alt="">
-                        <h2>Graphic Design</h2>
-                        <p>There are many variations of passages of but the majority have suffered alteration in some
-                            form.
+                        <h2>Typing Master</h2>
+                        <p> if you need a Typer for fast typing so you can heir me .
+          
                         </p>
                     </div>
                 </div>
@@ -201,45 +217,45 @@
                     <div class="card">
                         <div class="overlay">
                             <span>Category</span>
-                            <a href="#">Web development</a>
+                            <a href="#">Web Designer</a>
                         </div>
-                        <img src="./images/ph-1.png" alt="">
+                        <img src="./images/web designer 1.jpg" alt="">
                     </div>
                     <div class="card">
                         <div class="overlay">
                             <span>Category</span>
                             <a href="#">Web development</a>
                         </div>
-                        <img src="./images/ph-1.png" alt="">
+                        <img src="./images/web developer.jpg" alt="">
                     </div>
                     <div class="card">
+                        <div class="overlay">
+                            <span>Category</span>
+                            <a href="#">Graphic Designer</a>
+                        </div>
+                        <img src="./images/graphic designer.jpg" alt="">
+                    </div>
+                    <div class="card">
+                        <div class="overlay">
+                            <span>Category</span>
+                            <a href="#">Data Entry</a>
+                        </div>
+                        <img src="./images/dataentry.png" alt="">
+                    </div>
+                    <div class="card">
+                        <div class="overlay">
+                            <span>Category</span>
+                            <a href="#">Typing</a>
+                        </div>
+                        <img src="./images/typer.jpg" alt="">
+                    </div>
+                    <!-- <div class="card">
                         <div class="overlay">
                             <span>Category</span>
                             <a href="#">Web development</a>
                         </div>
                         <img src="./images/ph-1.png" alt="">
-                    </div>
-                    <div class="card">
-                        <div class="overlay">
-                            <span>Category</span>
-                            <a href="#">Web development</a>
-                        </div>
-                        <img src="./images/ph-1.png" alt="">
-                    </div>
-                    <div class="card">
-                        <div class="overlay">
-                            <span>Category</span>
-                            <a href="#">Web development</a>
-                        </div>
-                        <img src="./images/ph-1.png" alt="">
-                    </div>
-                    <div class="card">
-                        <div class="overlay">
-                            <span>Category</span>
-                            <a href="#">Web development</a>
-                        </div>
-                        <img src="./images/ph-1.png" alt="">
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -248,8 +264,9 @@
                 <h1 class="section-heading"><span>Our</span> Blog</h1>
                 <p>We provide high standar clean website for your business solutions</p>
 
-                <div class="card-wrapper">
-                    <div class="card">
+                <div class="card-wrapper" style="    position: relative; left: 12vw;font-size: 38px;">
+                    <p style="color: #fff;"><i class="fa-solid fa-blog" style="color: orange;"></i> <span style="color: #3dcfd3;">No Blog </span> Found</p>
+                    <!-- <div class="card">
                         <div class="img-wrapper">
                             <img src="./images/article-ph-1.png" alt="">
                         </div>
@@ -299,8 +316,8 @@
                                 mollit anim id est laborum.</p>
                             <a href="#">Read More</a>
                         </div>
-                    </div>
-                    <div class="card">
+                     </div> -->
+                    <!-- <div class="card">
                         <div class="img-wrapper">
                             <img src="./images/article-ph-1.png" alt="">
                         </div>
@@ -316,60 +333,62 @@
                                 mollit anim id est laborum.</p>
                             <a href="#">Read More</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
-        <section class="contact">
+        <section class="contact" id="contact">
             <div class="container">
                 <h1 class="section-heading">Contact <span>Us</span></h1>
                 <p>We provide high standar clean website for your business solutions</p>
                 <div class="card-wrapper">
                     <div class="card">
                         <img src="./images/phone-2.svg" alt="">
-                        <h1>Call Us On</h1>
-                        <h6>+985 123 7856</h6>
+                        <h1>Whatsapp <i class="fa-brands fa-whatsapp"></i> </h1>
+                        <h6>+973 453 3120</h6>
                     </div>
                     <div class="card">
                         <img src="./images/msg.svg" alt="">
-                        <h1>Email Us At</h1>
-                        <h6>support@companyname.com</h6>
+                        <h1>Email Us At <i class="fa-solid fa-envelope"></i></h1>
+                        <h6>farimulmondal@gmail.com</h6>
                     </div>
-                    <div class="card">
-                        <img src="./images/map.svg" alt="">
-                        <h1>Visit Office</h1>
-                        <h6>99 S.t Jomblo Park Pekanbaru 28292. Indonesia</h6>
-                    </div>
+                    
 
                 </div>
-
-                <form action="">
+                <% if(session.token) {%>
+                <form action="/user/send/email" method="post">
                     <div class="input-wrap">
-                        <input type="text" placeholder="Your Name *">
-                        <input type="email" placeholder="Your Email *">
+                    
+                        <input type="text" placeholder="Your Name *" value="<%= session.token[0].username%>" readonly name="name">
+                        <input type="email" placeholder="Your Email *" value="<%= session.token[0].email%>" readonly name="emailfrom">
+                    
                     </div>
                     <div class="input-wrap-2">
-                        <input type="text" placeholder="Your Subject...">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="Your Message..."></textarea>
+                        <input type="text" placeholder="Your Subject..." name="subject">
+                        <textarea name="massage" id="" cols="30" rows="10" placeholder="Your Message..." ></textarea>
                     </div>
                     <div class="btn-wrapper">
-                        <button class="btn btn-primary">Send Message</button>
+                        <button class="btn btn-primary " type="submit">Send Message</button>
                     </div>
                 </form>
+                <% } else {%>
+                <div class="btn-wrapper">
+                    <button class="btn btn-primary login">Login to Continue</button>
+                </div>
+                <% } %>
             </div>
         </section>
         <footer>
             <img class="footer-logo" src="./images/logo-2.svg" alt="">
             <div class="footer-socials">
-                <a href="#"><img src="./images/website.svg" alt=""></a>
-                <a href="https://www.facebook.com/codersgyan"><img src="./images/facebook.svg" alt=""></a>
-                <a href="https://twitter.com/CoderGyan"> <img src="./images/twitter.svg" alt=""></a>
-                <a href="#"> <img src="./images/pintrest.svg" alt=""></a>
-                <a href="https://www.instagram.com/codersgyan/"> <img src="./images/instagram.svg" alt=""></a>
+                <a href="https://www.facebook.com/farimu.mondal?_rdr"><i class="fa-brands fa-facebook" style="color: rgb(0 0 238); font-size: 24px;"></i></a>
+                <a href="https://www.instagram.com/farimulmondal/" style="color: orange; font-size: 24px;"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com/FarimulM"><i class="fa-brands fa-twitter" style="color: rgb(25, 116, 235); font-size: 24px;"></i></a>
+                <a href="#"> <i class="fa-solid fa-house" style="color: #3dcfd3; font-size:24px ;"></i></a>
+                <!-- <a href="https://www.instagram.com/codersgyan/"> <img src="./images/instagram.svg" alt=""></a> -->
             </div>
             <div class="copyright">
-                Copyright 2022 © Aktarul Raj
-            </div>
+                Copyright 2022 © Farimul Mondal
         </footer>
     </div>
 
@@ -379,11 +398,12 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
         var typed = new Typed(".auto-typing",{
-            strings:["Aktarul","Full Stack Web Developer","Creative Web Designer"],
+            strings:["Farimul"," Web Developer"," Web Designer","Data Entry Oparator" ," Typing Master"],
             loop:true,
             typeSpeed:50,
             backSpeed:50,
         })
+     
         </script>
     <script src="/js/app.js"></script>
 </body>

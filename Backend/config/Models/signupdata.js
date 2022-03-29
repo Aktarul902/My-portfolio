@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken")
 const signupSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -17,12 +16,19 @@ const signupSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    tokens:[{
-        token:{
-          required:true,
-          type:String
-        }
-      }]
+     role:{
+       type:String,
+       default:"user",
+       required:false
+     },
+    //  filname:{
+    //    type:String,
+    //    required:true
+    //  },
+    //  path:{
+    //    type:String,
+    //    required:true
+    //  }
 })
 signupSchema.methods.genwebtoken= async function(){
     try{

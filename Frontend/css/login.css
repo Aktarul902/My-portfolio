@@ -1,4 +1,5 @@
 /*add css Code*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css");
 html{
     height: 100%;
 } 
@@ -156,5 +157,38 @@ body{
       bottom: 100%;
     }
   }
-  
+.upload-img{
+  border: 3px solid #03e9f4;
+  border-radius: 50%;
+  height: 13vh;
+  width: 113px;
+  position: relative;
+  left: 96px;
+  margin-bottom: 13px;
+  background-color: #485460;
+  cursor: pointer;
+  transition: all linear 0.2s;
+}
+.user{
+  position: relative;
+  left: 47px;
+  top: 41%;
+  color: #161616;
+}
+.pencil
+{
+  position: relative;
+  left: 44px;
+  top: 22px;
+  /* border: 2px solid red; */
+  border-radius: 50%;
+  padding: -3px 4px;
+  display: none;
+}
+.color
+{
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+}
+ 
   

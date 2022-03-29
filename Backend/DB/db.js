@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
-const dburl = "mongodb://localhost:27017/portfolio"
-const mongoconn=mongoose.connect(dburl,{
-    useNewUrlParser:true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useUnifiedTopology:false
-}).then(data=>{
-    console.log("database connect")
+function db(){
 
-}).catch(err=>{
-    console.log("connection failed")
-})
-module.exports = mongoconn
+    const dburl = "mongodb://localhost:27017/portfolio"
+    mongoose.connect("`mongodb+srv://aktarul:123aktar@cluster0.gplk5.mongodb.net/portfolio?retryWrites=true&w=majority",{
+        //  useCertificateVerification:false,
+        useNewUrlParser:true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useUnifiedTopology:false
+    });
+    const connection = mongoose.connection;
+    return connection
+}
+module.exports = db

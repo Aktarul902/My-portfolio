@@ -15,33 +15,21 @@
         <h2>LOGIN</h2>
         <% if(locals.error) {%>
         <p style="color: rgb(224, 53, 53);"><%= locals.error %></p>
-        <% } %>
-        <form action="/authsignup" method="post">
-           
-            <div class="user-box">
-                <input type="text" name="username" required>
-            <label>Username</label>    
+        <% }%>
+        <form action="/authprofile" method="post" enctype="multipart/form-data">
+            <div class="upload-img ">
+                <i class="fa-solid fa-user user"> </i>
+                <i class="fa-solid fa-pencil pencil"></i>
             </div>
-            <div class="user-box">
-                <input type="email" name="email" required>
-                <label>Email</label>
-            </div>
-            <div class="user-box">
-                <input type="password" name="password" required>
-                <label>Password</label>
-            </div>
-            <div class="user-box">
-                <input type="password" name="cpassword" required>
-                <label>Confrim Password</label>
-            </div>
+            <input type="file" name="profilephoto" id="photo" style="display: none;">
+            
             <button type="submit" style="border: none; outline: none; background: transparent; cursor: pointer;">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-                sign up
+              upload
             </button>
-            <!--That's all-->
         </form>
      
     </div>
